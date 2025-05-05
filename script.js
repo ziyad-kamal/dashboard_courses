@@ -102,7 +102,7 @@ function animateStatCards() {
         setTimeout(() => {
             card.style.opacity = '1';
             card.style.transform = 'translateY(0)';
-        }, 100 * index);
+        }, 300 * index);
     });
 }
 
@@ -117,7 +117,7 @@ function animateProgressBars() {
         
         setTimeout(() => {
             bar.style.width = width;
-        }, 300);
+        }, 600);
     });
 }
 
@@ -155,7 +155,6 @@ const chartData = {
         labels: ['18-24', '25-34', '35-44', '45-54', '55+'],
         male: [18, 25, 15, 8, 4],
         female: [15, 20, 12, 6, 3],
-        other: [2, 3, 1, 0.5, 0.5]
     }
 };
 
@@ -315,11 +314,6 @@ function setupDemographicsChart() {
                     data: chartData.demographics.female,
                     backgroundColor: '#ec4899'
                 },
-                {
-                    label: 'Other',
-                    data: chartData.demographics.other,
-                    backgroundColor: '#10b981'
-                }
             ]
         },
         options: {

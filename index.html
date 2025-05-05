@@ -154,6 +154,55 @@
                     </div>
                 </div>
 
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 mt-10">
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="border-b pb-4 mb-4 flex justify-between items-center">
+                            <h2 class="font-bold text-lg">Revenue Overview</h2>
+                            <div class="flex space-x-2">
+                                <button class="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-800 chart-period-btn active" data-period="monthly">Monthly</button>
+                                <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 chart-period-btn" data-period="quarterly">Quarterly</button>
+                                <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 chart-period-btn" data-period="yearly">Yearly</button>
+                            </div>
+                        </div>
+                        <div class="h-64">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-4 mt-10">
+                        <div class="border-b pb-4 mb-4 flex justify-between items-center">
+                            <h2 class="font-bold text-lg">Course Enrollments</h2>
+                            <div class="flex space-x-2">
+                                <button class="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-800 enrollment-period-btn active" data-period="weekly">Weekly</button>
+                                <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 enrollment-period-btn" data-period="monthly">Monthly</button>
+                            </div>
+                        </div>
+                        <div class="h-64">
+                            <canvas id="enrollmentChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Distribution Doughnut Chart -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="border-b pb-4 mb-4">
+                            <h2 class="font-bold text-lg">Course Categories</h2>
+                        </div>
+                        <div class="h-64 flex items-center justify-center">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 bg-white rounded-lg shadow p-4">
+                        <div class="border-b pb-4 mb-4">
+                            <h2 class="font-bold text-lg">Student Demographics</h2>
+                        </div>
+                        <div class="h-64">
+                            <canvas id="demographicsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
                 <!-- Recent sales and top courses section -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
                     <div class="lg:col-span-2 bg-white rounded-lg shadow">
@@ -426,54 +475,7 @@
                     </div>
                 </div>
 
-                <!-- Charts Section -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 mt-10">
-                    <div class="bg-white rounded-lg shadow p-4">
-                        <div class="border-b pb-4 mb-4 flex justify-between items-center">
-                            <h2 class="font-bold text-lg">Revenue Overview</h2>
-                            <div class="flex space-x-2">
-                                <button class="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-800 chart-period-btn active" data-period="monthly">Monthly</button>
-                                <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 chart-period-btn" data-period="quarterly">Quarterly</button>
-                                <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 chart-period-btn" data-period="yearly">Yearly</button>
-                            </div>
-                        </div>
-                        <div class="h-64">
-                            <canvas id="revenueChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-lg shadow p-4 mt-10">
-                        <div class="border-b pb-4 mb-4 flex justify-between items-center">
-                            <h2 class="font-bold text-lg">Course Enrollments</h2>
-                            <div class="flex space-x-2">
-                                <button class="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-800 enrollment-period-btn active" data-period="weekly">Weekly</button>
-                                <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 enrollment-period-btn" data-period="monthly">Monthly</button>
-                            </div>
-                        </div>
-                        <div class="h-64">
-                            <canvas id="enrollmentChart"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Category Distribution Doughnut Chart -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
-                    <div class="bg-white rounded-lg shadow p-4">
-                        <div class="border-b pb-4 mb-4">
-                            <h2 class="font-bold text-lg">Course Categories</h2>
-                        </div>
-                        <div class="h-64 flex items-center justify-center">
-                            <canvas id="categoryChart"></canvas>
-                        </div>
-                    </div>
-                    <div class="md:col-span-2 bg-white rounded-lg shadow p-4">
-                        <div class="border-b pb-4 mb-4">
-                            <h2 class="font-bold text-lg">Student Demographics</h2>
-                        </div>
-                        <div class="h-64">
-                            <canvas id="demographicsChart"></canvas>
-                        </div>
-                    </div>
-                </div>
+                
             </div>
         </main>
     </div>
