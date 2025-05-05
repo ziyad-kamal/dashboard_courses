@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 font-sans">
+    <div class="min-h-screen flex flex-col md:flex-row">
+        <!-- Sidebar -->
+        <aside class="bg-indigo-800 text-white w-full md:w-64 md:min-h-screen p-4 transition-all duration-300 ease-in-out" id="sidebar">
+            <div class="flex items-center justify-between mb-8">
+                <div class="flex items-center">
+                    <i class="fas fa-graduation-cap text-2xl mr-2"></i>
+                    <h2 class="text-xl font-bold">EduPro</h2>
+                </div>
+                <button class="md:hidden" id="closeSidebar">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav>
+                <ul>
+                    <li class="mb-2">
+                        <a href="#" class="flex items-center p-2 rounded bg-indigo-700">
+                            <i class="fas fa-home w-6"></i>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="flex items-center p-2 rounded hover:bg-indigo-700 transition-colors">
+                            <i class="fas fa-book w-6"></i>
+                            <span>My Courses</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="flex items-center p-2 rounded hover:bg-indigo-700 transition-colors">
+                            <i class="fas fa-shopping-cart w-6"></i>
+                            <span>Course Sales</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="flex items-center p-2 rounded hover:bg-indigo-700 transition-colors">
+                            <i class="fas fa-users w-6"></i>
+                            <span>Students</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="flex items-center p-2 rounded hover:bg-indigo-700 transition-colors">
+                            <i class="fas fa-chart-line w-6"></i>
+                            <span>Analytics</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" class="flex items-center p-2 rounded hover:bg-indigo-700 transition-colors">
+                            <i class="fas fa-cog w-6"></i>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            <div class="mt-auto pt-8">
+                <a href="#" class="flex items-center p-2 rounded hover:bg-indigo-700 transition-colors">
+                    <i class="fas fa-sign-out-alt w-6"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-grow">
+            <!-- Top navigation -->
+            <header class="bg-white shadow-sm">
+                <div class="flex items-center justify-between p-4">
+                    <div class="flex items-center">
+                        <button class="mr-2 md:hidden" id="openSidebar">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1 class="text-xl font-bold">Dashboard</h1>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="relative">
+                            <input type="text" placeholder="Search..." class="pl-8 pr-4 py-1 border rounded-full text-sm">
+                            <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm"></i>
+                        </div>
+                        <div class="relative">
+                            <button class="relative">
+                                <i class="fas fa-bell text-gray-600"></i>
+                                <span class="absolute -top-1 -right-1 bg-red-500 text-white rounded-full w-4 h-4 text-xs flex items-center justify-center">3</span>
+                            </button>
+                        </div>
+                        <div class="flex items-center">
+                            <img src="https://ui-avatars.com/api/?name=John+Doe" alt="Profile" class="w-8 h-8 rounded-full mr-2">
+                            <span class="hidden md:inline text-sm font-medium">John Doe</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Dashboard content -->
+            <div class="p-6">
+                <!-- Stats overview -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-blue-100 p-3 mr-4">
+                                <i class="fas fa-graduation-cap text-blue-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-gray-500 text-sm">Total Courses</h3>
+                                <p class="text-2xl font-bold">12</p>
+                                <p class="text-xs text-green-500"><i class="fas fa-arrow-up mr-1"></i> 12% from last month</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-green-100 p-3 mr-4">
+                                <i class="fas fa-dollar-sign text-green-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-gray-500 text-sm">Total Revenue</h3>
+                                <p class="text-2xl font-bold">$24,300</p>
+                                <p class="text-xs text-green-500"><i class="fas fa-arrow-up mr-1"></i> 8% from last month</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-purple-100 p-3 mr-4">
+                                <i class="fas fa-users text-purple-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-gray-500 text-sm">Total Students</h3>
+                                <p class="text-2xl font-bold">1,240</p>
+                                <p class="text-xs text-green-500"><i class="fas fa-arrow-up mr-1"></i> 18% from last month</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="flex items-center">
+                            <div class="rounded-full bg-yellow-100 p-3 mr-4">
+                                <i class="fas fa-star text-yellow-600"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-gray-500 text-sm">Avg. Rating</h3>
+                                <p class="text-2xl font-bold">4.8</p>
+                                <p class="text-xs text-green-500"><i class="fas fa-arrow-up mr-1"></i> 0.3 from last month</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent sales and top courses section -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                    <div class="lg:col-span-2 bg-white rounded-lg shadow">
+                        <div class="border-b p-4 flex justify-between items-center">
+                            <h2 class="font-bold text-lg">Recent Sales</h2>
+                            <button class="text-blue-600 text-sm">View All</button>
+                        </div>
+                        <div class="p-4">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead>
+                                        <tr>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Course</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Customer</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
+                                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">Web Development Masterclass</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">John Smith</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">$89.99</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">UX/UI Design Principles</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">Sarah Johnson</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">$69.99</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">Data Science Fundamentals</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">Michael Brown</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">$129.99</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">Pending</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm font-medium text-gray-900">Mobile App Development</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">Emily Wilson</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <div class="text-sm text-gray-900">$79.99</div>
+                                            </td>
+                                            <td class="px-6 py-4 whitespace-nowrap">
+                                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">Completed</span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="border-b p-4 flex justify-between items-center">
+                            <h2 class="font-bold text-lg">Top Courses</h2>
+                            <button class="text-blue-600 text-sm">View All</button>
+                        </div>
+                        <div class="p-4">
+                            <ul class="space-y-4">
+                                <li class="flex items-center p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                                    <div class="w-12 h-12 rounded-lg bg-blue-100 flex items-center justify-center mr-3">
+                                        <i class="fas fa-code text-blue-600"></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h3 class="font-medium">Web Development Masterclass</h3>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <span class="flex items-center">
+                                                <i class="fas fa-users mr-1"></i> 438 students
+                                            </span>
+                                            <span class="mx-2">•</span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-star text-yellow-500 mr-1"></i> 4.9
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="text-lg font-bold">$89.99</div>
+                                </li>
+                                <li class="flex items-center p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                                    <div class="w-12 h-12 rounded-lg bg-purple-100 flex items-center justify-center mr-3">
+                                        <i class="fas fa-paint-brush text-purple-600"></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h3 class="font-medium">UX/UI Design Principles</h3>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <span class="flex items-center">
+                                                <i class="fas fa-users mr-1"></i> 327 students
+                                            </span>
+                                            <span class="mx-2">•</span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-star text-yellow-500 mr-1"></i> 4.7
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="text-lg font-bold">$69.99</div>
+                                </li>
+                                <li class="flex items-center p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                                    <div class="w-12 h-12 rounded-lg bg-green-100 flex items-center justify-center mr-3">
+                                        <i class="fas fa-database text-green-600"></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h3 class="font-medium">Data Science Fundamentals</h3>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <span class="flex items-center">
+                                                <i class="fas fa-users mr-1"></i> 256 students
+                                            </span>
+                                            <span class="mx-2">•</span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-star text-yellow-500 mr-1"></i> 4.8
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="text-lg font-bold">$129.99</div>
+                                </li>
+                                <li class="flex items-center p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                                    <div class="w-12 h-12 rounded-lg bg-red-100 flex items-center justify-center mr-3">
+                                        <i class="fas fa-mobile-alt text-red-600"></i>
+                                    </div>
+                                    <div class="flex-grow">
+                                        <h3 class="font-medium">Mobile App Development</h3>
+                                        <div class="flex items-center text-sm text-gray-500">
+                                            <span class="flex items-center">
+                                                <i class="fas fa-users mr-1"></i> 219 students
+                                            </span>
+                                            <span class="mx-2">•</span>
+                                            <span class="flex items-center">
+                                                <i class="fas fa-star text-yellow-500 mr-1"></i> 4.6
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="text-lg font-bold">$79.99</div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Latest activities and upcoming courses -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="border-b p-4 flex justify-between items-center">
+                            <h2 class="font-bold text-lg">Latest Activities</h2>
+                            <button class="text-blue-600 text-sm">View All</button>
+                        </div>
+                        <div class="p-4">
+                            <ul class="space-y-4">
+                                <li class="flex items-start">
+                                    <div class="bg-blue-100 rounded-full p-2 mt-1 mr-3">
+                                        <i class="fas fa-comment text-blue-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm"><span class="font-medium">John Smith</span> left a review on <span class="font-medium">Web Development Masterclass</span></p>
+                                        <p class="text-xs text-gray-500 mt-1">2 hours ago</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-green-100 rounded-full p-2 mt-1 mr-3">
+                                        <i class="fas fa-dollar-sign text-green-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm">You received a payment of <span class="font-medium">$89.99</span> for <span class="font-medium">UX/UI Design Principles</span></p>
+                                        <p class="text-xs text-gray-500 mt-1">5 hours ago</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-purple-100 rounded-full p-2 mt-1 mr-3">
+                                        <i class="fas fa-user-plus text-purple-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm"><span class="font-medium">Sarah Johnson</span> enrolled in <span class="font-medium">Data Science Fundamentals</span></p>
+                                        <p class="text-xs text-gray-500 mt-1">1 day ago</p>
+                                    </div>
+                                </li>
+                                <li class="flex items-start">
+                                    <div class="bg-yellow-100 rounded-full p-2 mt-1 mr-3">
+                                        <i class="fas fa-star text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm">You received a 5-star rating on <span class="font-medium">Mobile App Development</span></p>
+                                        <p class="text-xs text-gray-500 mt-1">2 days ago</p>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow">
+                        <div class="border-b p-4 flex justify-between items-center">
+                            <h2 class="font-bold text-lg">Upcoming Courses</h2>
+                            <button class="text-blue-600 text-sm">View All</button>
+                        </div>
+                        <div class="p-4">
+                            <ul class="space-y-4">
+                                <li class="flex border rounded-lg overflow-hidden">
+                                    <div class="bg-indigo-600 text-white text-center py-2 px-4 flex flex-col justify-center items-center">
+                                        <span class="text-lg font-bold">15</span>
+                                        <span class="text-xs">June</span>
+                                    </div>
+                                    <div class="p-3 flex-grow">
+                                        <h3 class="font-medium">Advanced JavaScript Concepts</h3>
+                                        <p class="text-sm text-gray-500">Launching in 2 weeks</p>
+                                        <div class="mt-2 flex items-center">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-indigo-600 h-2 rounded-full" style="width: 75%"></div>
+                                            </div>
+                                            <span class="ml-2 text-xs text-gray-500">75%</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="flex border rounded-lg overflow-hidden">
+                                    <div class="bg-indigo-600 text-white text-center py-2 px-4 flex flex-col justify-center items-center">
+                                        <span class="text-lg font-bold">22</span>
+                                        <span class="text-xs">June</span>
+                                    </div>
+                                    <div class="p-3 flex-grow">
+                                        <h3 class="font-medium">Python for Data Analysis</h3>
+                                        <p class="text-sm text-gray-500">Launching in 3 weeks</p>
+                                        <div class="mt-2 flex items-center">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-indigo-600 h-2 rounded-full" style="width: 50%"></div>
+                                            </div>
+                                            <span class="ml-2 text-xs text-gray-500">50%</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li class="flex border rounded-lg overflow-hidden">
+                                    <div class="bg-indigo-600 text-white text-center py-2 px-4 flex flex-col justify-center items-center">
+                                        <span class="text-lg font-bold">5</span>
+                                        <span class="text-xs">July</span>
+                                    </div>
+                                    <div class="p-3 flex-grow">
+                                        <h3 class="font-medium">React Native for Beginners</h3>
+                                        <p class="text-sm text-gray-500">Launching in 4 weeks</p>
+                                        <div class="mt-2 flex items-center">
+                                            <div class="w-full bg-gray-200 rounded-full h-2">
+                                                <div class="bg-indigo-600 h-2 rounded-full" style="width: 30%"></div>
+                                            </div>
+                                            <span class="ml-2 text-xs text-gray-500">30%</span>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts Section -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6 mt-10">
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="border-b pb-4 mb-4 flex justify-between items-center">
+                            <h2 class="font-bold text-lg">Revenue Overview</h2>
+                            <div class="flex space-x-2">
+                                <button class="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-800 chart-period-btn active" data-period="monthly">Monthly</button>
+                                <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 chart-period-btn" data-period="quarterly">Quarterly</button>
+                                <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 chart-period-btn" data-period="yearly">Yearly</button>
+                            </div>
+                        </div>
+                        <div class="h-64">
+                            <canvas id="revenueChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-lg shadow p-4 mt-10">
+                        <div class="border-b pb-4 mb-4 flex justify-between items-center">
+                            <h2 class="font-bold text-lg">Course Enrollments</h2>
+                            <div class="flex space-x-2">
+                                <button class="px-2 py-1 text-xs rounded bg-indigo-100 text-indigo-800 enrollment-period-btn active" data-period="weekly">Weekly</button>
+                                <button class="px-2 py-1 text-xs rounded bg-gray-100 text-gray-800 enrollment-period-btn" data-period="monthly">Monthly</button>
+                            </div>
+                        </div>
+                        <div class="h-64">
+                            <canvas id="enrollmentChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Category Distribution Doughnut Chart -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-white rounded-lg shadow p-4">
+                        <div class="border-b pb-4 mb-4">
+                            <h2 class="font-bold text-lg">Course Categories</h2>
+                        </div>
+                        <div class="h-64 flex items-center justify-center">
+                            <canvas id="categoryChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="md:col-span-2 bg-white rounded-lg shadow p-4">
+                        <div class="border-b pb-4 mb-4">
+                            <h2 class="font-bold text-lg">Student Demographics</h2>
+                        </div>
+                        <div class="h-64">
+                            <canvas id="demographicsChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html> 
