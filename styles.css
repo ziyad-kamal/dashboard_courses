@@ -262,4 +262,12 @@
     #searchIconBtn {
         display: none;
     }
+}
+
+/* Add focus style for search input that matches sidebar color */
+.search-input-container input:focus {
+    outline: none;
+    border-color: #4f46e5; /* indigo-600 more visible */
+    box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
+    transition: all 0.2s ease;
 } 
