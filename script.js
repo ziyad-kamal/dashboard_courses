@@ -4,6 +4,8 @@ const openSidebarBtn = document.getElementById('openSidebar');
 const closeSidebarBtn = document.getElementById('closeSidebar');
 const notificationBtn = document.getElementById('notificationButton');
 const notificationDropdown = document.getElementById('notificationDropdown');
+const searchIconBtn = document.getElementById('searchIconBtn');
+const searchInputContainer = document.querySelector('.search-input-container');
 let overlay;
 
 // Chart instances
@@ -42,6 +44,22 @@ if (notifCount == 0) {
 function setupEventListeners() {
     openSidebarBtn.addEventListener('click', openSidebar);
     closeSidebarBtn.addEventListener('click', closeSidebar);
+    
+    // Search button toggle (mobile)
+    if (searchIconBtn) {
+        searchIconBtn.addEventListener('click', toggleSearchInput);
+    }
+    
+    // Close search input when clicking outside
+    document.addEventListener('click', function(event) {
+        if (window.innerWidth <= 640) {
+            if (!searchIconBtn.contains(event.target) && 
+                !searchInputContainer.contains(event.target) && 
+                searchInputContainer.classList.contains('active')) {
+                searchInputContainer.classList.remove('active');
+            }
+        }
+    });
     
     // Notification dropdown toggle
     notificationBtn.addEventListener('click', toggleNotificationDropdown);
@@ -433,6 +451,18 @@ function updateEnrollmentChart(period) {
 function toggleNotificationDropdown(event) {
     event.stopPropagation();
     notificationDropdown.classList.toggle('hidden');
+}
+
+// Toggle search input
+function toggleSearchInput(event) {
+    event.stopPropagation();
+    searchInputContainer.classList.toggle('active');
+    
+    if (searchInputContainer.classList.contains('active')) {
+        setTimeout(() => {
+            searchInputContainer.querySelector('input').focus();
+        }, 100);
+    }
 }
 
 // Initialize when DOM is loaded
