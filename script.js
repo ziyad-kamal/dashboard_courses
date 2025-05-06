@@ -2,6 +2,8 @@
 const sidebar = document.getElementById('sidebar');
 const openSidebarBtn = document.getElementById('openSidebar');
 const closeSidebarBtn = document.getElementById('closeSidebar');
+const notificationBtn = document.getElementById('notificationButton');
+const notificationDropdown = document.getElementById('notificationDropdown');
 let overlay;
 
 // Chart instances
@@ -30,10 +32,67 @@ function init() {
     animateProgressBars();
 }
 
+const notificationEle = document.querySelector('#notificationButton span');
+const notifCount = Number(notificationEle.textContent);
+if (notifCount == 0) {
+    notificationEle.style.display = "none";
+}
+
 // Set up event listeners
 function setupEventListeners() {
     openSidebarBtn.addEventListener('click', openSidebar);
     closeSidebarBtn.addEventListener('click', closeSidebar);
+    
+    // Notification dropdown toggle
+    notificationBtn.addEventListener('click', toggleNotificationDropdown);
+    
+    // Close notification dropdown when clicking outside
+    document.addEventListener('click', function(event) {
+        if (!notificationBtn.contains(event.target) && !notificationDropdown.contains(event.target)) {
+            notificationDropdown.classList.add('hidden');
+        }
+    }); 
+    
+    // Mark all notifications as read
+    const markAllReadBtn = document.querySelector('#notificationDropdown .text-blue-600');
+    if (markAllReadBtn) {
+        markAllReadBtn.addEventListener('click', function() {
+            const notificationDots = document.querySelectorAll('#notificationDropdown .bg-blue-600');
+            notificationDots.forEach(dot => {
+                dot.classList.remove('bg-blue-600');
+                dot.classList.add('bg-gray-200');
+            });
+            
+            // Update notification count
+            const notificationCount = document.querySelector('#notificationButton span');
+            notificationCount.textContent = "0";
+            notificationCount.style.display = "none";
+        });
+    }
+    
+    // Individual notification click handling
+    const notifications = document.querySelectorAll('#notificationDropdown .p-4');
+    notifications.forEach(notification => {
+        notification.addEventListener('click', function() {
+            // Mark this notification as read
+            const dot = notification.querySelector('.bg-blue-600');
+            if (dot) {
+                dot.classList.remove('bg-blue-600');
+                dot.classList.add('bg-gray-200');
+                
+                // Update notification count
+                const notificationCount = document.querySelector('#notificationButton span');
+                const currentCount = parseInt(notificationCount.textContent);
+                if (currentCount > 0) {
+                    notificationCount.textContent = (currentCount - 1).toString();
+                    if (currentCount - 1 === 0) {
+                        notificationCount.classList.remove('bg-red-500');
+                        notificationCount.classList.add('bg-gray-400');
+                    }
+                }
+            }
+        });
+    });
     
     // Add card hover class to all card elements
     document.querySelectorAll('.bg-white.rounded-lg').forEach(card => {
@@ -368,6 +427,12 @@ function updateEnrollmentChart(period) {
     enrollmentChart.data.labels = chartData.enrollments[period].labels;
     enrollmentChart.data.datasets[0].data = chartData.enrollments[period].data;
     enrollmentChart.update();
+}
+
+// Toggle notification dropdown
+function toggleNotificationDropdown(event) {
+    event.stopPropagation();
+    notificationDropdown.classList.toggle('hidden');
 }
 
 // Initialize when DOM is loaded
